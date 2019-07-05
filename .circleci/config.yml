@@ -6,6 +6,19 @@ description: |
 
 brakeman:
   orb:
+    commands:
+      brakeman:
+        parameters:
+          parallel:
+            default: true
+            description: brakeman vesion. default is latest
+            type: boolean
+        steps:
+        - run:
+            command: bundle exec brakeman -o brakeman-output.tabs --no-progress --separate-models
+              --exit-on-warn
+            name: Run brakeman
+            parallel: << parameters.parallel >>
     description: |
       Run brakeman
     examples:
@@ -22,17 +35,6 @@ brakeman:
           orbs:
             ruby-linter: amyroi/ruby-linter@1.0.0
           version: 2.1
-    parameters:
-      parallel:
-        default: true
-        description: brakeman vesion. default is latest
-        type: boolean
-    steps:
-    - run:
-        command: bundle exec brakeman -o brakeman-output.tabs --no-progress --separate-models
-          --exit-on-warn
-        name: Run brakeman
-        parallel: << parameters.parallel >>
     version: 2.1
 eslint: {}
 haml-lint: {}
