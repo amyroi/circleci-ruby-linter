@@ -18,6 +18,17 @@ commands:
           --exit-on-warn
         name: Run brakeman
         parallel: << parameters.parallel >>
+  haml-lin:
+    description: Run brakeman
+    parameters:
+      paths:
+        default: app/views
+        description: haml-lint target paths. default is app/views
+        type: string
+    steps:
+    - run:
+        command: bundle exec haml-lint "<< parameters.paths >>"
+        name: Run haml-lint
   reek:
     description: Run reek
     parameters:
