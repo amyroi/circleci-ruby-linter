@@ -19,7 +19,7 @@ commands:
         name: Run brakeman
         parallel: << parameters.parallel >>
   haml-lin:
-    description: Run brakeman
+    description: Run haml-lint
     parameters:
       paths:
         default: app/views
@@ -40,4 +40,10 @@ commands:
     - run:
         command: bundle exec reek -s "<< parameters.paths >>"
         name: Run reek
+  stylelint:
+    description: Run stylelint
+    steps:
+    - run:
+        command: bin/yarn lint:style
+        name: Run stylelint
 

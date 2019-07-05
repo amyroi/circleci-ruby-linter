@@ -1,0 +1,5 @@
+description: Run stylelint
+steps:
+  - run:
+      name: Run stylelint
+      command:  bin/yarn lint:style
