@@ -1,0 +1,10 @@
+description: Run reek
+steps:
+  - run:
+      name: Run reek
+      command:  bundle exec reek -s "<< parameters.paths >>"
+parameters:
+  paths:
+    type: string
+    default: "app lib config spec bin db"
+    description: "reek target paths. default is app lib config spec bin db"

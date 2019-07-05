@@ -18,3 +18,15 @@ commands:
           --exit-on-warn
         name: Run brakeman
         parallel: << parameters.parallel >>
+  reek:
+    description: Run reek
+    parameters:
+      paths:
+        default: app lib config spec bin db
+        description: reek target paths. default is app lib config spec bin db
+        type: string
+    steps:
+    - run:
+        command: bundle exec reek -s "<< parameters.paths >>"
+        name: Run reek
+
