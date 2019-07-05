@@ -1,0 +1,5 @@
+version: 2.1
+
+description: |
+  Ruby Linter for Circleci Orb: bash 
+  Source: https://github.com/amyroi/circleci-ruby-linter

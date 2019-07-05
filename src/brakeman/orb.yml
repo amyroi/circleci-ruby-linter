@@ -1,0 +1,32 @@
+version: 2.1
+
+description: |
+  Run brakeman
+
+examples:
+  basic_commands:
+    description: "Examples uses brakeman commands"
+    usage:
+      version: 2.1
+      orbs:
+        ruby-linter: amyroi/ruby-linter@1.0.0
+
+      jobs:
+        build:
+          docker:
+            - image: circleci/ruby:2.6.3
+          steps:
+            - checkout
+            - ruby-linter/brakeman
+
+parameters:
+  parallel:
+    type: boolean
+    default: true
+    description: "brakeman vesion. default is latest"
+
+steps:
+  - run:
+      name: Run brakeman
+      command:  bundle exec brakeman -o brakeman-output.tabs --no-progress --separate-models --exit-on-warn
+      parallel: "<< parameters.parallel >>"
