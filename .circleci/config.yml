@@ -18,7 +18,7 @@ commands:
           --exit-on-warn
         name: Run brakeman
         parallel: << parameters.parallel >>
-  haml-lin:
+  haml-lint:
     description: Run haml-lint
     parameters:
       paths:
