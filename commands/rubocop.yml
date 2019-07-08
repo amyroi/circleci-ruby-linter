@@ -1,0 +1,20 @@
+description: Run Rubocop
+steps:
+  - run:
+      name: Run Rubocop
+      command: |
+          mkdir -p "<< parameters.report_dir >>"
+          rubocop_reports_dir="<< parameters.report_dir >>"/rubocop
+          mkdir -p $rubocop_reports_dir
+          bundle exec rubocop --require rubocop-rspec --out $rubocop_reports_dir/junit.xml --format progres
+      files: "<< parameters.files >>"
+parameters:
+  report_dir:
+    type: string
+    default: $CIRCLE_TEST_REPORTS
+    description: "rubocop reports dir. default is $CIRCLE_TEST_REPORTS"
+  files:
+    type: string
+    default: "app/**/*.rb lib/**/*.rb config/**/*.rb spec/**/*.rb script/**/*.rb"
+    description: "rubocop target paths. default is app lib config spec script"
+    
