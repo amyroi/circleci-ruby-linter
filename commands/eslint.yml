@@ -1,0 +1,5 @@
+description: Run eslint
+steps:
+  - run:
+      name: Run eslint
+      command: bin/yarn lint:js

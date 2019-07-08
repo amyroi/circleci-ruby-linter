@@ -18,6 +18,12 @@ commands:
           --exit-on-warn
         name: Run brakeman
         parallel: << parameters.parallel >>
+  eslint:
+    description: Run eslint
+    steps:
+    - run:
+        command: bin/yarn lint:js
+        name: Run eslint
   haml-lint:
     description: Run haml-lint
     parameters:
