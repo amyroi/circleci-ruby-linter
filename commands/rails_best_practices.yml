@@ -1,0 +1,10 @@
+description: Run rails_best_practices
+steps:
+  - run:
+      name: Run rails_best_practices
+      command:  bundle exec rails_best_practices "<< parameters.paths >>"
+parameters:
+  paths:
+    type: string
+    default: "."
+    description: "Run rails_best_practices target paths. default is ."

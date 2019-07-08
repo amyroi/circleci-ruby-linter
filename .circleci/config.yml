@@ -29,6 +29,17 @@ commands:
     - run:
         command: bundle exec haml-lint "<< parameters.paths >>"
         name: Run haml-lint
+  rails_best_practices:
+    description: Run rails_best_practices
+    parameters:
+      paths:
+        default: .
+        description: Run rails_best_practices target paths. default is .
+        type: string
+    steps:
+    - run:
+        command: bundle exec rails_best_practices "<< parameters.paths >>"
+        name: Run rails_best_practices
   reek:
     description: Run reek
     parameters:
