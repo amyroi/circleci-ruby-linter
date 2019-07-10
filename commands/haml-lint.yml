@@ -2,7 +2,7 @@ description: Run haml-lint
 steps:
   - run:
       name: Run haml-lint
-      command: bundle exec haml-lint "<< parameters.paths >>"
+      command: bundle exec haml-lint << parameters.paths >>
 parameters:
   paths:
     type: string

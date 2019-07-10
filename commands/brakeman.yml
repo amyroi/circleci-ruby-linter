@@ -3,7 +3,7 @@ steps:
   - run:
       name: Run brakeman
       command:  bundle exec brakeman -o brakeman-output.tabs --no-progress --separate-models --exit-on-warn
-      parallel: "<< parameters.parallel >>"
+      parallel: << parameters.parallel >>
 parameters:
   parallel:
     type: boolean

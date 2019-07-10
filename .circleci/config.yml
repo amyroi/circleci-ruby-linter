@@ -3,7 +3,6 @@ version: 2.1
 description: |
   Ruby Linter for Circleci Orb: bash 
   Source: https://github.com/amyroi/circleci-ruby-linter
-
 commands:
   brakeman:
     description: Run brakeman
@@ -33,7 +32,7 @@ commands:
         type: string
     steps:
     - run:
-        command: bundle exec haml-lint "<< parameters.paths >>"
+        command: bundle exec haml-lint << parameters.paths >>
         name: Run haml-lint
   rails_best_practices:
     description: Run rails_best_practices
@@ -44,7 +43,7 @@ commands:
         type: string
     steps:
     - run:
-        command: bundle exec rails_best_practices "<< parameters.paths >>"
+        command: bundle exec rails_best_practices << parameters.paths >>
         name: Run rails_best_practices
   reek:
     description: Run reek
@@ -55,7 +54,7 @@ commands:
         type: string
     steps:
     - run:
-        command: bundle exec reek -s "<< parameters.paths >>"
+        command: bundle exec reek -s << parameters.paths >>
         name: Run reek
   rubocop:
     description: Run Rubocop
@@ -71,7 +70,7 @@ commands:
     steps:
     - run:
         command: |
-          mkdir -p "<< parameters.report_dir >>"
+          mkdir -p << parameters.report_dir >>
           rubocop_reports_dir="<< parameters.report_dir >>"/rubocop
           mkdir -p $rubocop_reports_dir
           bundle exec rubocop --require rubocop-rspec --out $rubocop_reports_dir/junit.xml --format progres
