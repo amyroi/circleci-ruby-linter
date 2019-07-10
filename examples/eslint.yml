@@ -1,0 +1,11 @@
+description: Example of eslint command
+usage:
+  jobs:
+    build:
+      docker:
+      - image: circleci/ruby:2.6.3
+      steps:
+        - checkout
+        - ruby-linter/eslint
+  orbs:
+    ruby-linter: amyroi/ruby-linter@1.0.0

@@ -1,0 +1,11 @@
+description: Examples uses stylelint commands
+usage:
+  jobs:
+    build:
+      docker:
+      - image: circleci/ruby:2.6.3
+      steps:
+        - checkout
+        - ruby-linter/stylelint
+  orbs:
+    ruby-linter: amyroi/ruby-linter@1.0.0

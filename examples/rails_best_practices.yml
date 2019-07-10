@@ -1,0 +1,12 @@
+description: Example of rails_best_practices command
+usage:
+  jobs:
+    build:
+      docker:
+      - image: circleci/ruby:2.6.3
+      steps:
+        - checkout
+        - ruby-linter/rails_best_practices:
+            paths: .
+  orbs:
+    ruby-linter: amyroi/ruby-linter@1.0.0
