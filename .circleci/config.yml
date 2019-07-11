@@ -47,14 +47,9 @@ commands:
         name: Run rails_best_practices
   reek:
     description: Run reek
-    parameters:
-      paths:
-        default: app lib config spec bin db
-        description: reek target paths. default is app lib config spec bin db
-        type: string
     steps:
     - run:
-        command: bundle exec reek -s ${<< parameters.paths >>}
+        command: bundle exec reek -s app lib config spec bin db
         name: Run reek
   rubocop:
     description: Run Rubocop
@@ -147,8 +142,7 @@ examples:
           - image: circleci/ruby:2.6.3
           steps:
           - checkout
-          - ruby-linter/reek:
-              paths: app lib config spec bin db
+          - ruby-linter/reek
       orbs:
         ruby-linter: amyroi/ruby-linter@1.0.0
       version: 2.1

@@ -6,8 +6,7 @@ usage:
       - image: circleci/ruby:2.6.3
       steps:
         - checkout
-        - ruby-linter/reek:
-            paths: "app lib config spec bin db"
+        - ruby-linter/reek
   orbs:
     ruby-linter: amyroi/ruby-linter@1.0.0
   version: 2.1
