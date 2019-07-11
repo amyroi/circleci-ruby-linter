@@ -10,3 +10,4 @@ usage:
             paths: .
   orbs:
     ruby-linter: amyroi/ruby-linter@1.0.0
+  version: 2.1
