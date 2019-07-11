@@ -64,14 +64,14 @@ commands:
         description: rubocop target paths. default is app lib config spec script
         type: string
       report_dir:
-        default: $CIRCLE_TEST_REPORTS
+        default: CIRCLE_TEST_REPORTS
         description: rubocop reports dir. default is $CIRCLE_TEST_REPORTS
-        type: string
+        type: env_var_name
     steps:
     - run:
         command: |
-          mkdir -p << parameters.report_dir >>
-          rubocop_reports_dir="<< parameters.report_dir >>"/rubocop
+          mkdir -p ${<< parameters.report_dir} >>
+          rubocop_reports_dir=${<< parameters.report_dir >>}/rubocop
           mkdir -p $rubocop_reports_dir
           bundle exec rubocop --require rubocop-rspec --out $rubocop_reports_dir/junit.xml --format progres
         files: << parameters.files >>
