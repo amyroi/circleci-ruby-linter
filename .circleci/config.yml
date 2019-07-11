@@ -54,7 +54,7 @@ commands:
         type: string
     steps:
     - run:
-        command: bundle exec reek -s << parameters.paths >>
+        command: bundle exec reek -s ${<< parameters.paths >>}
         name: Run reek
   rubocop:
     description: Run Rubocop
