@@ -6,7 +6,7 @@ steps:
           mkdir -p << parameters.report_dir >>
           rubocop_reports_dir="<< parameters.report_dir >>"/rubocop
           mkdir -p $rubocop_reports_dir
-          bundle exec rubocop --require rubocop-rspec --out $rubocop_reports_dir/junit.xml --format progres
+          bundle exec rubocop --require rubocop-rspec --out $rubocop_reports_dir/junit.xml --format progress
       files: << parameters.files >>
 parameters:
   report_dir:
