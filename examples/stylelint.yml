@@ -8,5 +8,5 @@ usage:
         - checkout
         - ruby-linter/stylelint
   orbs:
-    ruby-linter: amyroi/ruby-linter@1.0.0
+    ruby-linter: amyroi/ruby-linter@1.0.1
   version: 2.1
