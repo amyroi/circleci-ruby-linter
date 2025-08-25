@@ -1,177 +1,177 @@
+
 version: 2.1
 
 description: |
-  Ruby Linter for Circleci Orb: bash 
-  Source: https://github.com/amyroi/circleci-ruby-linter
-commands:
-  brakeman:
-    description: Run brakeman
-    parameters:
-      parallel:
-        default: true
-        description: brakeman vesion. default is latest
-        type: boolean
-    steps:
-    - run:
-        command: bundle exec brakeman -o brakeman-output.tabs --no-progress --separate-models
-          --exit-on-warn
-        name: Run brakeman
-        parallel: << parameters.parallel >>
-  eslint:
-    description: Run eslint
-    steps:
-    - run:
-        command: bin/yarn lint:js
-        name: Run eslint
-  haml-lint:
-    description: Run haml-lint
-    parameters:
-      paths:
-        default: app/views
-        description: haml-lint target paths. default is app/views
-        type: string
-    steps:
-    - run:
-        command: bundle exec haml-lint << parameters.paths >>
-        name: Run haml-lint
-  rails_best_practices:
-    description: Run rails_best_practices
-    parameters:
-      paths:
-        default: .
-        description: Run rails_best_practices target paths. default is .
-        type: string
-    steps:
-    - run:
-        command: bundle exec rails_best_practices << parameters.paths >>
-        name: Run rails_best_practices
-  reek:
-    description: Run reek
-    steps:
-    - run:
-        command: bundle exec reek -s app lib config spec bin db
-        name: Run reek
-  rubocop:
-    description: Run Rubocop
-    parameters:
-      files:
-        default: app/**/*.rb lib/**/*.rb config/**/*.rb spec/**/*.rb script/**/*.rb
-        description: rubocop target paths. default is app lib config spec script
-        type: string
-      report_dir:
-        default: $CIRCLE_TEST_REPORTS
-        description: rubocop reports dir. default is $CIRCLE_TEST_REPORTS
-        type: string
-    steps:
-    - run:
-        command: |
-          mkdir -p << parameters.report_dir >>
-          rubocop_reports_dir="<< parameters.report_dir >>"/rubocop
-          mkdir -p $rubocop_reports_dir
-          bundle exec rubocop --require rubocop-rspec --out $rubocop_reports_dir/junit.xml --format progres
-        files: << parameters.files >>
-        name: Run Rubocop
-  stylelint:
-    description: Run stylelint
-    steps:
-    - run:
-        command: bin/yarn lint:style
-        name: Run stylelint
-examples:
-  brakeman:
-    description: Example of brakeman command
-    usage:
-      jobs:
-        build:
-          docker:
-          - image: circleci/ruby:2.6.3
-          steps:
-          - checkout
-          - ruby-linter/brakeman:
-              parallel: true
-      orbs:
-        ruby-linter: amyroi/ruby-linter@1.0.0
-      version: 2.1
-  eslint:
-    description: Example of eslint command
-    usage:
-      jobs:
-        build:
-          docker:
-          - image: circleci/ruby:2.6.3
-          steps:
-          - checkout
-          - ruby-linter/eslint
-      orbs:
-        ruby-linter: amyroi/ruby-linter@1.0.0
-      version: 2.1
-  haml-lint:
-    description: Example of haml-lint command
-    usage:
-      jobs:
-        build:
-          docker:
-          - image: circleci/ruby:2.6.3
-          steps:
-          - checkout
-          - ruby-linter/haml-lint:
-              paths: app/views
-      orbs:
-        ruby-linter: amyroi/ruby-linter@1.0.0
-      version: 2.1
-  rails_best_practices:
-    description: Example of rails_best_practices command
-    usage:
-      jobs:
-        build:
-          docker:
-          - image: circleci/ruby:2.6.3
-          steps:
-          - checkout
-          - ruby-linter/rails_best_practices:
-              paths: .
-      orbs:
-        ruby-linter: amyroi/ruby-linter@1.0.0
-      version: 2.1
-  reek:
-    description: Example of reek command
-    usage:
-      jobs:
-        build:
-          docker:
-          - image: circleci/ruby:2.6.3
-          steps:
-          - checkout
-          - ruby-linter/reek
-      orbs:
-        ruby-linter: amyroi/ruby-linter@1.0.0
-      version: 2.1
-  rubocop:
-    description: Example of rubocop command
-    usage:
-      jobs:
-        build:
-          docker:
-          - image: circleci/ruby:2.6.3
-          steps:
-          - checkout
-          - ruby-linter/rubocop:
-              files: app/**/*.rb lib/**/*.rb config/**/*.rb spec/**/*.rb script/**/*.rb
-              report_dir: $CIRCLE_TEST_REPORTS
-      orbs:
-        ruby-linter: amyroi/ruby-linter@1.0.0
-      version: 2.1
-  stylelint:
-    description: Examples uses stylelint commands
-    usage:
-      jobs:
-        build:
-          docker:
-          - image: circleci/ruby:2.6.3
-          steps:
-          - checkout
-          - ruby-linter/stylelint
-      orbs:
-        ruby-linter: amyroi/ruby-linter@1.0.0
-      version: 2.1
+    Ruby Linter for Circleci Orb: bash 
+    Source: https://github.com/amyroi/circleci-ruby-linter
 
+commands:
+    brakeman:
+        description: Run brakeman
+        parameters:
+            parallel:
+                default: true
+                description: brakeman vesion. default is latest
+                type: boolean
+        steps:
+            - run:
+                command: bundle exec brakeman -o brakeman-output.tabs --no-progress --separate-models --exit-on-warn
+                name: Run brakeman
+                parallel: << parameters.parallel >>
+    eslint:
+        description: Run eslint
+        steps:
+            - run:
+                command: bin/yarn lint:js
+                name: Run eslint
+    haml-lint:
+        description: Run haml-lint
+        parameters:
+            paths:
+                default: app/views
+                description: haml-lint target paths. default is app/views
+                type: string
+        steps:
+            - run:
+                command: bundle exec haml-lint << parameters.paths >>
+                name: Run haml-lint
+    rails_best_practices:
+        description: Run rails_best_practices
+        parameters:
+            paths:
+                default: .
+                description: Run rails_best_practices target paths. default is .
+                type: string
+        steps:
+            - run:
+                command: bundle exec rails_best_practices << parameters.paths >>
+                name: Run rails_best_practices
+    reek:
+        description: Run reek
+        steps:
+            - run:
+                command: bundle exec reek -s app lib config spec bin db
+                name: Run reek
+    rubocop:
+        description: Run Rubocop
+        parameters:
+            files:
+                default: app/**/*.rb lib/**/*.rb config/**/*.rb spec/**/*.rb script/**/*.rb
+                description: rubocop target paths. default is app lib config spec script
+                type: string
+            report_dir:
+                default: $CIRCLE_TEST_REPORTS
+                description: rubocop reports dir. default is $CIRCLE_TEST_REPORTS
+                type: string
+        steps:
+            - run:
+                command: |
+                    mkdir -p << parameters.report_dir >>
+                    rubocop_reports_dir="<< parameters.report_dir >>"/rubocop
+                    mkdir -p $rubocop_reports_dir
+                    bundle exec rubocop --require rubocop-rspec --out $rubocop_reports_dir/junit.xml --format progress
+                files: << parameters.files >>
+                name: Run Rubocop
+    stylelint:
+        description: Run stylelint
+        steps:
+            - run:
+                command: bin/yarn lint:style
+                name: Run stylelint
+examples:
+    brakeman:
+        description: Example of brakeman command
+        usage:
+            jobs:
+                build:
+                    docker:
+                        - image: circleci/ruby:2.6.3
+                    steps:
+                        - checkout
+                        - ruby-linter/brakeman:
+                            parallel: true
+            orbs:
+                ruby-linter: amyroi/ruby-linter@1.0.1
+            version: 2.1
+    eslint:
+        description: Example of eslint command
+        usage:
+            jobs:
+                build:
+                    docker:
+                        - image: circleci/ruby:2.6.3
+                    steps:
+                        - checkout
+                        - ruby-linter/eslint
+            orbs:
+                ruby-linter: amyroi/ruby-linter@1.0.1
+            version: 2.1
+    haml-lint:
+        description: Example of haml-lint command
+        usage:
+            jobs:
+                build:
+                    docker:
+                        - image: circleci/ruby:2.6.3
+                    steps:
+                        - checkout
+                        - ruby-linter/haml-lint:
+                            paths: app/views
+            orbs:
+                ruby-linter: amyroi/ruby-linter@1.0.1
+            version: 2.1
+    rails_best_practices:
+        description: Example of rails_best_practices command
+        usage:
+            jobs:
+                build:
+                    docker:
+                        - image: circleci/ruby:2.6.3
+                    steps:
+                        - checkout
+                        - ruby-linter/rails_best_practices:
+                            paths: .
+            orbs:
+                ruby-linter: amyroi/ruby-linter@1.0.1
+            version: 2.1
+    reek:
+        description: Example of reek command
+        usage:
+            jobs:
+                build:
+                    docker:
+                        - image: circleci/ruby:2.6.3
+                    steps:
+                        - checkout
+                        - ruby-linter/reek
+            orbs:
+                ruby-linter: amyroi/ruby-linter@1.0.1
+            version: 2.1
+    rubocop:
+        description: Example of rubocop command
+        usage:
+            jobs:
+                build:
+                    docker:
+                        - image: circleci/ruby:2.6.3
+                    steps:
+                        - checkout
+                        - ruby-linter/rubocop:
+                            files: app/**/*.rb lib/**/*.rb config/**/*.rb spec/**/*.rb script/**/*.rb
+                            report_dir: $CIRCLE_TEST_REPORTS
+            orbs:
+                ruby-linter: amyroi/ruby-linter@1.0.1
+            version: 2.1
+    stylelint:
+        description: Examples uses stylelint commands
+        usage:
+            jobs:
+                build:
+                    docker:
+                        - image: circleci/ruby:2.6.3
+                    steps:
+                        - checkout
+                        - ruby-linter/stylelint
+            orbs:
+                ruby-linter: amyroi/ruby-linter@1.0.1
+            version: 2.1

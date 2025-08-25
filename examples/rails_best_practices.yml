@@ -9,5 +9,5 @@ usage:
         - ruby-linter/rails_best_practices:
             paths: .
   orbs:
-    ruby-linter: amyroi/ruby-linter@1.0.0
+    ruby-linter: amyroi/ruby-linter@1.0.1
   version: 2.1
