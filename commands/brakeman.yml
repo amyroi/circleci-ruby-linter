@@ -8,4 +8,4 @@ parameters:
   parallel:
     type: boolean
     default: true
-    description: "brakeman vesion. default is latest"
+    description: "brakeman version. default is latest"
